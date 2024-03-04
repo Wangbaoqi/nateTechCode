@@ -1,0 +1,36 @@
+GET http://localhost:3000 HTTP/1.1
+Cookie: name=sample
+Cookie: age=20
+# Accept 请求头用来告知（服务器）客户端可以处理的内容类型，这种内容类型用MIME 类型来表示。
+# 借助内容协商机制, 服务器可以从诸多备选项中选择一项进行应用，并使用 Content-Type 应答头通知客户端它的选择
+Accept: text/html, application/*;q=0.8, */*;q=0.9
+Accept-Charset: utf-8
+# Accept-Encoding 会将客户端能够理解的内容编码方式——通常是某种压缩算法——进行通知（给服务端）。通过内容协商的方式，服务端会选择一个客户端提议的方式，使用并在响应头 Content-Encoding 中通知客户端该选择
+Accept-Encoding: gzip, deflate, compress, br, identity, *
+# 请求头允许客户端声明它可以理解的自然语言，以及优先选择的区域方言
+Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7
+
+# Common header
+Connection: keep-alive
+Content-Length: 190
+
+Content-Type: text/html; charset=UTF-8
+
+
+
+###
+curl http://127.0.0.1:3000 --cookie "Cho=Kim;Greet=Hello"
+
+###
+POST http://localhost:3000/users HTTP/1.1
+# post 或者 put 实际发送的数据类型
+content-type: application/json
+
+{
+  "name": "sample",
+  "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+
+###
+curl -I http://i.imgur.com/z4d4kWk.jpg
