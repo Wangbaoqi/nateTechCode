@@ -3,3 +3,15 @@
 body {
   padding: 0;
 }
+
+q::before {
+  content: open-quote;
+}
+q::after {
+  content: close-quote
+}
+
+p {
+  margin: 50px
+}
+
