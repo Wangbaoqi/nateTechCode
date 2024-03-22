@@ -1,3 +1,7 @@
-b {
 
+
+
+a[href^='mailto:'] {
+  color: red;
+  text-underline: none;
 }

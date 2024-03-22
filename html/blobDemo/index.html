@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>blob download</title>
+
+  <style>
+    #preview {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="file" id="imageFile" accept="image/*">
+  <button id="generateBlobUrl">生成 Blob URL</button>
+  <a href="" id="downloadBlobUrl" download hidden>下载 Blob URL</a>
+  <img hidden id="preview" src="" alt="Image Preview">
+
+  <script>
+    document.getElementById('generateBlobUrl').addEventListener('click', function () {
+      var fileInput = document.getElementById('imageFile');
+      var file = fileInput.files[0];
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var blob = new Blob([e.target.result], { type: file.type });
+          var url = URL.createObjectURL(blob);
+
+          const preview = document.getElementById('preview')
+          const download = document.getElementById('downloadBlobUrl')
+          preview.src = url;
+          preview.hidden = false;
+          download.hidden = false;
+          download.href = url;
+          console.log("Blob URL:", url);
+        };
+        reader.readAsArrayBuffer(file);
+      } else {
+        alert("请选择一个图片文件。");
+      }
+    });
+  </script>
+
+
+</body>
+
+</html>
